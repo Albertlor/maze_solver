@@ -1,6 +1,6 @@
 # Reinforcement Learning Project - Maze Solver
 
-This project demonstrated a maze solver agent that is able to learn how to solve a 7x7 maze based on Q-learning algorithm and feature engineering technique. The agent learns with first two mazes and tested with an unseen third maze. Interestingly, the agent learns really well even with only two mazes. Please continue reading to see the results.
+This project has demonstrated a maze solver agent that is able to learn how to solve a 7x7 maze based on Q-learning algorithm and feature engineering technique. The agent learns with first two mazes and tested with an unseen third maze. Interestingly, the agent learns really well even with only two mazes. Please continue reading to see the results.
 
 ### Training Data
 
