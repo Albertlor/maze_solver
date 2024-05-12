@@ -4,6 +4,7 @@ import sys
 from maze_generator import MazeGenerator
 from maze_solver import MazeSolver
 from maze_solver_approx import MazeSolverApprox
+from statistical_analyzer import StatisticalAnalyzer
 from joblib import dump, load
 
 
@@ -93,7 +94,7 @@ def test_agent_approx(maze_generator,weights,featurizer):
     CONDITIONS = [END_STATE,STATE_SPACE,ACTION_SPACE,MAX_STEPS]
 
     EPSILON = 0.2
-    ALPHA = 0.05
+    ALPHA = 0
     GAMMA = 0.9
     maze_solver_approx = MazeSolverApprox(maze_generator,CONDITIONS,EPSILON,ALPHA,GAMMA,weights=weights,featurizer=featurizer,trained=1)
     for _ in range(1000):
@@ -104,7 +105,7 @@ def test_agent_approx(maze_generator,weights,featurizer):
     maze_solver_approx.plot_cumulative_rewards()
     maze_solver_approx.plot_steps_per_episode()
 
-    return weights
+    return weights,maze_solver_approx.steps_per_episode_list
 
 
 ACTION_SPACE = ['U','L','D','R']
@@ -131,21 +132,38 @@ if status == 'train':
     ######################################
 
 if status == 'test':
-    trained_weights = np.load('./configs/weights1.npy')
-    trained_featurizer = load('./configs/featurizer1.joblib')
-    """
-    Test
-    """
-    ######################################
-    STEP_COST = -1
-    PENALTY_COST = -10
-    PRIZE = 100
-    START_STATE = (0,0)
-    END_STATE = (6,0)
-    END_CONDITION = {(6,1):'L'}
-    MAZE_CONSTRAINTS = [START_STATE,END_STATE,END_CONDITION,ACTION_SPACE]
-    maze_generator = MazeGenerator(7,7,'test_maze')
-    maze_generator.generate_maze(STEP_COST,PENALTY_COST,PRIZE,MAZE_CONSTRAINTS)
-    # tested_Q = test_agent(maze_generator,trained_Q)
-    tested_weights = test_agent_approx(maze_generator,trained_weights,trained_featurizer)
-    ######################################
+    statistical_analyzer = StatisticalAnalyzer()
+    for _ in range(1):
+        trained_weights = np.load('./configs/weights1.npy')
+        trained_featurizer = load('./configs/featurizer1.joblib')
+        """
+        Test
+        """
+        ######################################
+        STEP_COST = -1
+        PENALTY_COST = -10
+        PRIZE = 100
+        START_STATE = (0,0)
+        END_STATE = (6,0)
+        END_CONDITION = {(6,1):'L'}
+        MAZE_CONSTRAINTS = [START_STATE,END_STATE,END_CONDITION,ACTION_SPACE]
+        maze_generator = MazeGenerator(7,7,'test_maze')
+        maze_generator.generate_maze(STEP_COST,PENALTY_COST,PRIZE,MAZE_CONSTRAINTS)
+        # tested_Q = test_agent(maze_generator,trained_Q)
+        tested_weights,steps_per_episode_list  = test_agent_approx(maze_generator,trained_weights,trained_featurizer)
+        ######################################
+
+        #statistical_analyzer.collect_samples(steps_per_episode_list)
+statistical_analyzer.plot_histogram(steps_per_episode_list)
+within_std_dev, mean, std_dev = statistical_analyzer.percentage_within_std_dev(steps_per_episode_list)
+percentage1 = statistical_analyzer.samples_less_than_step_num(mean+std_dev,steps_per_episode_list)
+percentage2 = statistical_analyzer.samples_less_than_step_num(mean,steps_per_episode_list)
+percentage3 = statistical_analyzer.samples_less_than_step_num(13,steps_per_episode_list)
+print(f"Mean: {int(mean)}, Standard deviation: {int(std_dev)}")
+print(f"Percentage of data within one standard deviation: {within_std_dev:.2f}%")
+print(f"Percentage of completing the maze with less than {int(mean)+int(std_dev)} steps: {percentage1:.2f}%")
+print(f"Percentage of completing the maze with less than {int(mean)} steps: {percentage2:.2f}%")
+print(f"Percentage of completing the maze with optimal steps: {percentage3:.2f}%")
+# mean, std_dev, confidence_level = statistical_analyzer.analyze_confidence_level()
+# print(f"Mean: {mean}, Standard of deviation: {std_dev}")
+# print(f"95% of confidence the mean steps required to solve the maze per episode falls within the range of {confidence_level[0], confidence_level[1]}")

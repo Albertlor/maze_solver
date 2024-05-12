@@ -2,7 +2,7 @@ import random
 
 
 class MazeGenerator:
-    TRAINING_MAZE_STRUCTURE = {
+    TEST_MAZE_STRUCTURE = {
         (0,0):['D','R'],
         (0,1):['L','R'],
         (0,2):['L','R','D'],
@@ -34,7 +34,7 @@ class MazeGenerator:
         (6,2):['L','R'],
         (6,3):['U','L']
     }
-    TEST_MAZE_STRUCTURE = {
+    TRAINING_MAZE_STRUCTURE = {
         (0,0):['D','R'],
         (0,1):['L','R'],
         (0,2):['L','D'],
