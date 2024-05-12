@@ -65,3 +65,14 @@ To test the agent only without updating the weights and featurizer, run the foll
 ```
 python main.py test
 ```
+
+## About Author
+Hi, my name is Lor Wen Sin (Albert). I'm currently studying Mechanical Engieering (Robotics stream) at Nanyang Technological University Singapore. My research interest is about Human-Robot Collaboration and I'm currently looking for an opportunity to further my studies in the United States. 
+
+You are allowed to use this project as you like. Also, feel free to contact me for further discussion if you are interested.
+
+## Contact
+[![Email](https://img.shields.io/badge/Email-contact-blue)](mailto:WLOR001@e.ntu.edu.sg)
+[![Email](https://img.shields.io/badge/Email-contact-blue)](mailto:wensinlor@gmail.com)
+[LinkedIn](https://www.linkedin.com/in/wen-sin-lor-455ab6232/)
+[GoogleScholar](https://scholar.google.com/citations?user=K1SD2oUAAAAJ&hl=zh-CN)
