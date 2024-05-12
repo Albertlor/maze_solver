@@ -72,7 +72,14 @@ Hi, my name is Lor Wen Sin (Albert). I'm currently studying Mechanical Engieerin
 You are allowed to use this project as you like. Also, feel free to contact me for further discussion if you are interested.
 
 ## Contact
+School Email Address
 [![Email](https://img.shields.io/badge/Email-contact-blue)](mailto:WLOR001@e.ntu.edu.sg)
+
+Personal Email Address
 [![Email](https://img.shields.io/badge/Email-contact-blue)](mailto:wensinlor@gmail.com)
-[LinkedIn](https://www.linkedin.com/in/wen-sin-lor-455ab6232/)
-[GoogleScholar](https://scholar.google.com/citations?user=K1SD2oUAAAAJ&hl=zh-CN)
+
+LinkedIn
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/wen-sin-lor-455ab6232/)
+
+Google Scholar
+[![Google Scholar](https://img.shields.io/badge/Google%20Scholar-Profile-brightgreen?style=flat&logo=google-scholar)](https://scholar.google.com/citations?user=K1SD2oUAAAAJ&hl=zh-CN)
